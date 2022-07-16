@@ -1,35 +1,34 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { Container, Col, Row } from "react-bootstrap";
+import { Routes, Route } from "react-router-dom";
 import Account from "./Account";
 import FreeComponent from "./FreeComponent";
-import AuthComponent from "./AuthComponent";
-import ProtectedRoutes from "./ProtectedRoutes";
-import Cookies from "universal-cookie";
-import { Navigate } from "react-router-dom";
-const cookies = new Cookies();
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Register from "./pages/Register";
+import { Login } from "./pages/Login";
+import { Protected } from "./routes/Protected";
+import { Protpage } from "./pages/Protpage";
+import { Dashboard } from "./pages/Dashboard";
 
 function App() {
   return (
-    <Container>
-      <Row>
-        <Col className="text-center">
-          <h1>React Authentication Tutorial</h1>
-
-          <section id="navigation">
-            <a href="/">Home</a>
-            <a href="/free">Free Component</a>
-            <a href="/auth">Auth Component</a>
-          </section>
-        </Col>
-      </Row>
-
-      {/* create routes here */}
+    <>
       <Routes>
         <Route path="/" element={<Account />} />
         <Route path="/free" element={<FreeComponent />} />
-        <Route path="/auth" element={cookies.get("TOKEN") ? <AuthComponent /> : <Account />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/prot"
+          element={
+            <Protected>
+              <Protpage />
+            </Protected>
+          }
+        />
       </Routes>
-    </Container>
+      <ToastContainer />
+    </>
   );
 }
 
