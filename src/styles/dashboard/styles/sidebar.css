@@ -115,3 +115,9 @@
   margin-bottom: 4rem;
   overflow: hidden;
 }
+.sideLink:active,
+.sideLink:hover,
+.sideLink:visited,
+.sideLink:link {
+  color: rgba(39, 30, 74, 1);
+}

@@ -48,3 +48,26 @@
 button {
   cursor: pointer;
 }
+.datamain {
+  background: linear-gradient(
+    135deg,
+    rgba(216, 210, 252, 1) 0%,
+    rgba(230, 228, 234, 1) 35%,
+    rgba(224, 233, 244, 1) 100%
+  );
+  display: grid;
+  grid-template-rows: 12rem auto;
+}
+.reportmain {
+  background: linear-gradient(
+    135deg,
+    rgba(216, 210, 252, 1) 0%,
+    rgba(230, 228, 234, 1) 35%,
+    rgba(224, 233, 244, 1) 100%
+  );
+  display: grid;
+  grid-template-rows: 12rem auto;
+}
+button {
+  cursor: pointer;
+}

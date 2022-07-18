@@ -2,6 +2,7 @@ import { Dashgraph } from "../components/Dashgraph";
 import { Dashgrapharea } from "../components/Dashgrapharea";
 import { Dashparameters } from "../components/Dashparameters";
 import { Dashwebplatforms } from "../components/Dashwebplatforms";
+import { Lowsootfooter } from "../components/Lowsootfooter";
 import { Sidenav } from "../components/Sidenav";
 import { Topbar } from "../components/Topbar";
 
@@ -20,6 +21,7 @@ export function Dashboard() {
             <Dashwebplatforms />
           </div>
         </div>
+        <Lowsootfooter />
       </div>
     </div>
   );
