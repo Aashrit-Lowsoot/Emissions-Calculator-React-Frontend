@@ -4,10 +4,12 @@ import { Databoardtable } from "../components/Databoardtable";
 import { Databottom } from "../components/Databottom";
 import { Lowsootfooter } from "../components/Lowsootfooter";
 import { Homesidenav } from "../components/Homesidenav";
+import { Sidenavv2 } from "../components/sidenav/Sidenavv2";
 export function Home() {
   return (
     <div className="dcontainer">
-      <Homesidenav />
+      {/* <Homesidenav /> */}
+      <Sidenavv2 />
       <div className="datamain">
         <Topbar />
         <div className="databoardmaincontent">

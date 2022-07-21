@@ -6,6 +6,7 @@ export const chart1data = {
       rail: 40,
       road: 22,
       sea: 30,
+      emission: 45,
     },
     {
       month: "feb",
@@ -13,6 +14,7 @@ export const chart1data = {
       rail: 28,
       road: 46,
       sea: 10,
+      emission: 45,
     },
     {
       month: "mar",
@@ -20,6 +22,7 @@ export const chart1data = {
       rail: 88,
       road: 66,
       sea: 45,
+      emission: 45,
     },
     {
       month: "apr",
@@ -27,6 +30,7 @@ export const chart1data = {
       rail: 80,
       road: 45,
       sea: 20,
+      emission: 45,
     },
     {
       month: "may",
@@ -34,6 +38,7 @@ export const chart1data = {
       rail: 80,
       road: 45,
       sea: 10,
+      emission: 45,
     },
     {
       month: "jun",
@@ -41,6 +46,7 @@ export const chart1data = {
       rail: 80,
       road: 45,
       sea: 40,
+      emission: 80,
     },
   ],
 };

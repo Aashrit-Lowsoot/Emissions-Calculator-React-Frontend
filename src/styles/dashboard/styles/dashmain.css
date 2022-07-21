@@ -97,10 +97,12 @@
   background: var(--side-icon-hover);
   box-shadow: 0 0.4rem 1.5rem var(--side-icon-shadow);
   border-radius: 4.7rem;
+  /* margin-left: 2.4rem; */
 }
 .dashgraphs {
   display: flex;
   margin-top: 3rem;
+  margin-left: 2rem;
 }
 .dashgraphs > *:first-child {
   margin-left: 3.6rem;
