@@ -8,13 +8,13 @@ import { Protpage } from "./pages/Protpage";
 import { Dashboard } from "./pages/Dashboard";
 import { Databoard } from "./pages/Databoard";
 import { Report } from "./pages/Report";
-import { Home } from "./pages/Home";
+// import { Home } from "./pages/Home";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Databoard />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/report" element={<Report />} />

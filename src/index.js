@@ -7,6 +7,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Registrationprov } from "./contexts/Registrationprov";
 import { Authprov } from "./contexts/Authcontext";
 import { Databoardprovider } from "./contexts/Databoard";
+import { Navprov } from "./contexts/Navcontext";
+import { Visualsprov } from "./contexts/Visualcontext";
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
@@ -26,7 +28,11 @@ root.render(
     <Registrationprov>
       <Router>
         <Databoardprovider>
-          <App />
+          <Visualsprov>
+            <Navprov>
+              <App />
+            </Navprov>
+          </Visualsprov>
         </Databoardprovider>
       </Router>
     </Registrationprov>

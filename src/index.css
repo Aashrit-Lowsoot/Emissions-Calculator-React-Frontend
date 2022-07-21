@@ -24,3 +24,9 @@
   align-items: center;
   gap: 1rem;
 }
+.invisible {
+  visibility: hidden;
+}
+.hide {
+  display: none;
+}

@@ -4,7 +4,10 @@ import electricity from "../assets/sidenav/electricity.svg";
 import cargo from "../assets/sidenav/cargo.svg";
 import trash from "../assets/sidenav/trshbtn.svg";
 import { Link } from "react-router-dom";
+import { useNavc } from "../contexts/Navcontext";
 export function Sidenav() {
+  const { navdispatch, navboardstate } = useNavc();
+  console.log(navboardstate.navnow);
   return (
     <div className="sidenav">
       <div className="sidenav__logo">
@@ -23,7 +26,12 @@ export function Sidenav() {
         </div>
       </div>
       <div className="sidenav__navigate">
-        <div className="sidenav__navigateitm">
+        <div
+          onClick={() =>
+            navdispatch({ type: "SET_NAVSTATE", payload: { navnum: 1 } })
+          }
+          className="sidenav__navigateitm"
+        >
           <div className="sidenav__navigateitmlogo">
             <img className="sidenav__navigateitmimg" src={kio} alt="doctor" />
           </div>
@@ -34,7 +42,12 @@ export function Sidenav() {
             <p className="sidenav__navigateitmtooltipmsg">Travel</p>
           </div>
         </div>
-        <div className="sidenav__navigateitm">
+        <div
+          onClick={() =>
+            navdispatch({ type: "SET_NAVSTATE", payload: { navnum: 2 } })
+          }
+          className="sidenav__navigateitm"
+        >
           <div className="sidenav__navigateitmlogo">
             <img
               className="sidenav__navigateitmimg"
@@ -53,7 +66,12 @@ export function Sidenav() {
             <p className="sidenav__navigateitmtooltipmsg">electricity</p>
           </div>
         </div>
-        <div className="sidenav__navigateitm">
+        <div
+          onClick={() =>
+            navdispatch({ type: "SET_NAVSTATE", payload: { navnum: 3 } })
+          }
+          className="sidenav__navigateitm"
+        >
           <div className="sidenav__navigateitmlogo">
             <img className="sidenav__navigateitmimg" src={cargo} alt="cargo" />
           </div>
@@ -65,10 +83,15 @@ export function Sidenav() {
                 alt="cargo"
               />
             </div>
-            <p className="sidenav__navigateitmtooltipmsg">Travel</p>
+            <p className="sidenav__navigateitmtooltipmsg">Cargo</p>
           </div>
         </div>
-        <div className="sidenav__navigateitm">
+        <div
+          onClick={() =>
+            navdispatch({ type: "SET_NAVSTATE", payload: { navnum: 4 } })
+          }
+          className="sidenav__navigateitm"
+        >
           <div className="sidenav__navigateitmlogo">
             <img className="sidenav__navigateitmimg" src={trash} alt="trash" />
           </div>

@@ -1,29 +1,25 @@
-import { updaterecord } from "../functions/databoardfunctions";
+import { updaterecorde } from "../functions/databoardfunctions";
 import { useForm } from "react-hook-form";
 import { useDataboard } from "../contexts/Databoard";
-import { useState } from "react";
 
-export function Editmodal() {
+export function Editmodale() {
   const { databoarddispatch, databoardstate } = useDataboard();
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      passengers: JSON.stringify(databoardstate.updationrecord.passengers),
-      distance: JSON.stringify(databoardstate.updationrecord.distance),
-      travelBy: databoardstate.updationrecord.travelBy,
-      factorType: JSON.stringify(databoardstate.updationrecord.factorType),
-      date: databoardstate.updationrecord.date.slice(0, 16),
-      _id: databoardstate.updationrecord._id,
+      energy: databoardstate.updationrecorde.energy,
+      factorType: databoardstate.updationrecorde.factorType,
+      date: databoardstate.updationrecorde.date.slice(0, 16),
+      _id: databoardstate.updationrecorde._id,
     },
   });
-  const [travelbydata, setTravelbydata] = useState(
-    databoardstate.updationrecord.travelBy
-  );
   const onSubmit = async (data) => {
-    databoarddispatch({ type: "HIDE_UPDATE_MODAL" });
+    databoarddispatch({ type: "HIDE_UPDATE_MODALC" });
+    console.log("---*---");
     console.log(data);
+    console.log("---*---");
     const monthval = new Date(data.date);
     console.log({ ...data, month: JSON.stringify(monthval.getMonth()) });
-    const res = await updaterecord({
+    const res = await updaterecorde({
       ...data,
       month: JSON.stringify(monthval.getMonth()),
     });
@@ -31,17 +27,15 @@ export function Editmodal() {
       console.log("data updated");
       console.log({
         ...res.record,
-        passengers: Number(res.record.passengers),
-        distance: Number(res.record.distance),
+        energy: Number(res.record.energy),
         factorType: Number(res.record.factorType),
       });
       databoarddispatch({
-        type: "UPDATE_REORD",
+        type: "UPDATE_REORDE",
         payload: {
-          updatedrecord: {
+          updatedrecorde: {
             ...res.record,
-            passengers: Number(res.record.passengers),
-            distance: Number(res.record.distance),
+            energy: Number(res.record.energy),
             factorType: Number(res.record.factorType),
           },
         },
@@ -49,11 +43,7 @@ export function Editmodal() {
     } else {
       console.log("data not updated");
     }
-    console.log(data);
   };
-  console.log(typeof databoardstate.updationrecord.factorType);
-  console.log([...databoardstate.allfactors[travelbydata]]);
-  console.log(databoardstate.updationrecord._id);
   return (
     <div className="dialog__overlay">
       <div className="dialog">
@@ -64,40 +54,11 @@ export function Editmodal() {
               <input
                 type="number"
                 min="1"
-                placeholder="passengers"
+                placeholder="energy"
                 className="dialog__input"
                 required={true}
-                {...register("passengers")}
+                {...register("energy")}
               />
-            </div>
-          </div>
-          <div className="dialog__row">
-            <div className="dialog__inputcont">
-              <input
-                type="number"
-                placeholder="distance"
-                min="1"
-                className="dialog__input"
-                required={true}
-                {...register("distance")}
-              />
-            </div>
-          </div>
-          <div className="dialog__row">
-            <div className="dialog__inputcont">
-              <select
-                {...register("travelBy")}
-                className="dialog__inputslect"
-                required={true}
-                onChange={(eve) => setTravelbydata(eve.target.value)}
-              >
-                <option value="">--Travel by--</option>
-                {[...databoardstate.factorarr].map((tby, idx) => (
-                  <option key={idx + 1} value={tby}>
-                    {tby}
-                  </option>
-                ))}
-              </select>
             </div>
           </div>
           <div className="dialog__row">
@@ -108,7 +69,7 @@ export function Editmodal() {
                 required={true}
               >
                 <option value="">--Factor--</option>
-                {[...databoardstate.allfactors[travelbydata]].map((facto) => (
+                {[...databoardstate.factorarre].map((facto) => (
                   <option key={JSON.stringify(facto)} value={facto.id}>
                     {facto.factor}
                   </option>
@@ -127,11 +88,11 @@ export function Editmodal() {
             </div>
           </div>
           <button type="submit" className="dialog__btn">
-            Update
+            Insert
           </button>
         </form>
         <button
-          onClick={() => databoarddispatch({ type: "HIDE_UPDATE_MODAL" })}
+          onClick={() => databoarddispatch({ type: "HIDE_UPDATE_MODALC" })}
           className="dialog__btn"
         >
           Discard

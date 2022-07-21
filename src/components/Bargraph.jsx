@@ -8,8 +8,9 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
-import { chart2data } from "../mockdata";
-export function Bargraph() {
+// import { chart2data } from "../mockdata";
+export function Bargraph(params) {
+  const { vizarray } = params;
   // useEffect(() => {
   //   const controller = new AbortController();
   //   const signal = controller.signal;
@@ -38,9 +39,9 @@ export function Bargraph() {
   return (
     <>
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart width={500} height={300} data={chart2data.carbodata}>
+        <BarChart width={500} height={300} data={[...vizarray].slice(1, 7)}>
           <XAxis
-            dataKey="day"
+            dataKey="month"
             style={{
               fontSize: "1.6rem",
             }}
@@ -55,10 +56,7 @@ export function Bargraph() {
           <Tooltip />
           <Legend />
           <XAxis dataKey="day" />
-          <Bar dataKey="sea" stackId="a" fill="#fe7e7d" barSize={20} />
-          <Bar dataKey="air" stackId="a" fill="#e3a3e0" barSize={20} />
-          <Bar dataKey="road" stackId="a" fill="#a1d7f9" barSize={20} />
-          <Bar dataKey="rail" stackId="a" fill="#cbd6f3" barSize={20} />
+          <Bar dataKey="emission" stackId="a" fill="#fe7e7d" barSize={20} />
         </BarChart>
       </ResponsiveContainer>
     </>

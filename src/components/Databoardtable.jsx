@@ -4,7 +4,6 @@ import { useDataboard } from "../contexts/Databoard";
 import mmt from "../assets/databoard/mmt.svg";
 import editbtn from "../assets/databoard/editbtn.svg";
 import trashbtn from "../assets/databoard/trshbtn.svg";
-import roadicon from "../assets/databoard/roadico.svg";
 import {
   datetoviewformat,
   deleterecord,
@@ -134,18 +133,7 @@ export function Databoardtable() {
                   <td className="databoardtable__tabletd">
                     {datetoviewformat(item.date)}
                   </td>
-                  <td className="databoardtable__tabletd">
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {item.travelBy}
-                      <img src={roadicon} alt="sf" />
-                    </div>
-                  </td>
+                  <td className="databoardtable__tabletd">{item.travelBy}</td>
                   <td className="databoardtable__tabletd">{item.passengers}</td>
                   <td className="databoardtable__tabletd">{item.distance}</td>
                   <td className="databoardtable__tabletd">
