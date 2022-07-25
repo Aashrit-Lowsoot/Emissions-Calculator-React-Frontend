@@ -12,14 +12,14 @@ export function Databottom() {
         <p className="databoardmainbottom__rowmessage">
           {databoardstate.databoardtable.length} results found
         </p>
-        <div className="databoardmainbottom__controls">
+        {/* <div className="databoardmainbottom__controls">
           <button
             className="databoardmainbottom__addbtn"
             onClick={() => setModalstatus(true)}
           >
             Insert row
           </button>
-        </div>
+        </div> */}
       </div>
       {modalstatus && <Addmodal setModalstatus={setModalstatus} />}
       {databoardstate.updatemodalstatus && <Editmodal />}

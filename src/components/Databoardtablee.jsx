@@ -24,6 +24,10 @@ export function Databoardtablee() {
     const signal = controller.signal;
     (async () => {
       try {
+        databoarddispatch({
+          type: "LOADER_ON",
+        });
+        console.log("elec loader off");
         const response = await axios.get(
           "https://emissions-calculator-react.herokuapp.com/allElectricityFactors",
           {
@@ -77,88 +81,96 @@ export function Databoardtablee() {
           console.log({ error });
         }
       } finally {
+        databoarddispatch({
+          type: "LOADER_OFF",
+        });
+        console.log("elec loader off");
       }
     })();
 
     return () => {
       controller.abort();
     };
-  }, []);
+  }, [databoarddispatch]);
   console.log(databoardstate.databoardtablee);
   return (
     <>
-      <table className="databoardtable__table">
-        <thead className="databoardtable__tablehead">
-          <tr className="databoardtable__theadtr">
-            <th className="databoardtable__theadth" scope="col">
-              <span className="blank__letters">check</span>
-            </th>
-            <th className="databoardtable__theadth" scope="col">
-              date
-            </th>
-            <th className="databoardtable__theadth" scope="col">
-              Energy<span className="downarrow">↓</span>
-            </th>
-            <th className="databoardtable__theadth" scope="col">
-              Type<span className="downarrow">↓</span>
-            </th>
-            <th className="databoardtable__theadth" scope="col">
-              Source<span className="downarrow">↓</span>
-            </th>
-            <th className="databoardtable__theadth" scope="col">
-              Actions<span className="downarrow">↓</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody className="databoardtable__tablebody">
-          {[...databoardstate.databoardtablee].map((item) => {
-            return (
-              <tr key={item._id} className="databoardtable__tabletr">
-                <td>
-                  <div className="databoardtable__tablecheck">
-                    <input type="checkbox" defaultChecked />
-                  </div>
-                </td>
-                <td className="databoardtable__tabletd">
-                  {datetoviewformat(item.date)}
-                </td>
-                <td className="databoardtable__tabletd">{item.energy}</td>
-                <td className="databoardtable__tabletd">
-                  {
-                    [...databoardstate.factorarre].find(
-                      (elem) => elem.id === JSON.stringify(item.factorType)
-                    ).factor
-                  }
-                </td>
-                <td className="databoardtable__tabletd">-</td>
-                <td className="databoardtable__tabletd">
-                  <div className="databoardtable__tableactions">
-                    <button
-                      onClick={() =>
-                        databoarddispatch({
-                          type: "SHOW_UPDATE_MODALE",
-                          payload: { updationrecorde: item },
-                        })
-                      }
-                      // onClick={() => console.log(item)}
-                      className="databoardtable__tablebtn"
-                    >
-                      <img src={editbtn} alt="editbtn" />
-                    </button>
-                    <button
-                      onClick={() => handledeletee(item._id)}
-                      // onClick={() => console.log(item)}
-                      className="databoardtable__tablebtn"
-                    >
-                      <img src={trashbtn} alt="trashbtn" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      {databoardstate.databoardtableloading ? (
+        <h1 style={{ fontSize: "2rem", textAlign: "center" }}>loading...</h1>
+      ) : (
+        <table className="databoardtable__table">
+          <thead className="databoardtable__tablehead">
+            <tr className="databoardtable__theadtr">
+              <th className="databoardtable__theadth" scope="col">
+                <span className="blank__letters">check</span>
+              </th>
+              <th className="databoardtable__theadth" scope="col">
+                date
+              </th>
+              <th className="databoardtable__theadth" scope="col">
+                Energy<span className="downarrow">↓</span>
+              </th>
+              <th className="databoardtable__theadth" scope="col">
+                Type<span className="downarrow">↓</span>
+              </th>
+              <th className="databoardtable__theadth" scope="col">
+                Source<span className="downarrow">↓</span>
+              </th>
+              <th className="databoardtable__theadth" scope="col">
+                Actions<span className="downarrow">↓</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody className="databoardtable__tablebody">
+            {[...databoardstate.databoardtablee].map((item) => {
+              return (
+                <tr key={item._id} className="databoardtable__tabletr">
+                  <td>
+                    <div className="databoardtable__tablecheck">
+                      <input type="checkbox" defaultChecked />
+                    </div>
+                  </td>
+                  <td className="databoardtable__tabletd">
+                    {datetoviewformat(item.date)}
+                  </td>
+                  <td className="databoardtable__tabletd">{item.energy}</td>
+                  <td className="databoardtable__tabletd">
+                    {
+                      [...databoardstate.factorarre].find(
+                        (elem) => elem.id === JSON.stringify(item.factorType)
+                      ).factor
+                    }
+                  </td>
+                  <td className="databoardtable__tabletd">-</td>
+                  <td className="databoardtable__tabletd">
+                    <div className="databoardtable__tableactions">
+                      <button
+                        onClick={() =>
+                          databoarddispatch({
+                            type: "SHOW_UPDATE_MODALE",
+                            payload: { updationrecorde: item },
+                          })
+                        }
+                        // onClick={() => console.log(item)}
+                        className="databoardtable__tablebtn"
+                      >
+                        <img src={editbtn} alt="editbtn" />
+                      </button>
+                      <button
+                        onClick={() => handledeletee(item._id)}
+                        // onClick={() => console.log(item)}
+                        className="databoardtable__tablebtn"
+                      >
+                        <img src={trashbtn} alt="trashbtn" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      )}
     </>
   );
 }

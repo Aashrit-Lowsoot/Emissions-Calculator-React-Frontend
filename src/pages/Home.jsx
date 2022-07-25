@@ -5,11 +5,13 @@ import { Databottom } from "../components/Databottom";
 import { Lowsootfooter } from "../components/Lowsootfooter";
 import { Homesidenav } from "../components/Homesidenav";
 import { Sidenavv2 } from "../components/sidenav/Sidenavv2";
+import { Sidenavvv2 } from "../components/sidenav/Sidenavvv2";
 export function Home() {
   return (
     <div className="dcontainer">
       {/* <Homesidenav /> */}
-      <Sidenavv2 />
+      {/* <Sidenavv2 /> */}
+      <Sidenavvv2 />
       <div className="datamain">
         <Topbar />
         <div className="databoardmaincontent">

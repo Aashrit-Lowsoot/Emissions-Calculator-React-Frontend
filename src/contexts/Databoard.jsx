@@ -136,7 +136,10 @@ export function Databoardprovider({ children }) {
         return { ...state, updatemodalstatus: false, updationrecord: {} };
       case "HIDE_UPDATE_MODALC":
         return { ...state, updatemodalstatus: false, updationrecordc: {} };
-
+      case "SHOW_SHEETS_MODAL":
+        return { ...state, sheetsmodal: true };
+      case "HIDE_SHEETS_MODAL":
+        return { ...state, sheetsmodal: false };
       default:
         throw new Error();
     }
@@ -156,6 +159,7 @@ export function Databoardprovider({ children }) {
     allfactorsc: { "": [] },
     factorarre: [],
     databoardtablee: [],
+    sheetsmodal: false,
   });
   return (
     <Databoardcontext.Provider value={{ databoardstate, databoarddispatch }}>

@@ -28,6 +28,8 @@
   width: 80%;
   margin-left: auto;
   margin-right: auto;
+  /* border-collapse: collapse;
+  border-spacing: 0px; */
 }
 .bsr_table_details {
   font-size: 1.6rem;
@@ -50,19 +52,21 @@
   word-wrap: break-word;
   max-width: 20rem;
   padding: 0.5rem 1rem;
-
-  box-shadow: 0 0 0 0.05rem black;
+  box-shadow: 0 0 0 0.1rem black;
+  /* border: 1px solid black; */
 }
 .bsr_td {
   font-size: 1.6rem;
   word-wrap: break-word;
   max-width: 20rem;
   padding: 0.5rem 1rem;
-  box-shadow: 0 0 0 0.05rem black;
+  /* border: 1px solid black; */
+  box-shadow: 0 0 0 0.1rem black;
 }
 .full_colspan {
   font-size: 1.6rem;
   word-wrap: break-word;
-  box-shadow: 0 0 0 0.05rem black;
   padding: 0.5rem 1rem;
+  /* border: 1px solid black; */
+  box-shadow: 0 0 0 0.1rem black;
 }

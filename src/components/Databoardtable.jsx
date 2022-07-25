@@ -26,6 +26,10 @@ export function Databoardtable() {
     const signal = controller.signal;
     (async () => {
       try {
+        databoarddispatch({
+          type: "LOADER_ON",
+        });
+        console.log("travel loader on");
         const response = await axios.get(
           "https://emissions-calculator-react.herokuapp.com/allTravelFactors",
           {
@@ -80,6 +84,7 @@ export function Databoardtable() {
         databoarddispatch({
           type: "LOADER_OFF",
         });
+        console.log("travel loader off");
       }
     })();
 

@@ -28,6 +28,10 @@ export function Databoardtablec() {
     const signal = controller.signal;
     (async () => {
       try {
+        databoarddispatch({
+          type: "LOADER_ON",
+        });
+        console.log("cargo loader on");
         const response = await axios.get(
           "https://emissions-calculator-react.herokuapp.com/allCargoFactors",
           {
@@ -83,6 +87,7 @@ export function Databoardtablec() {
         databoarddispatch({
           type: "LOADER_OFF",
         });
+        console.log("cargo loader on");
       }
     })();
 

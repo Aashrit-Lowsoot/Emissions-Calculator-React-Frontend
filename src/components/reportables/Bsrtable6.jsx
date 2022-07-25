@@ -16,7 +16,7 @@ export function Bsrtable6(params) {
         </thead>
         <tbody className="bsr_body">
           <tr className="bsr_tr">
-            <td colSpan={3} className="full_colspan">
+            <td colSpan={4} className="full_colspan">
               Water discharge by destination and level of treatment (in
               kilolitres)
             </td>
