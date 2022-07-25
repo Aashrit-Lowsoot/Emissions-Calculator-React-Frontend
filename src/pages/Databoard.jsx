@@ -13,27 +13,36 @@ import sheetsname from "../assets/databoard/gsheetsname.svg";
 // import { useDataboard } from "../contexts/Databoard";
 // import { useEffect } from "react";
 
-import { Sidenavv2 } from "../components/sidenav/Sidenavv2";
+// import { Sidenavv2 } from "../components/sidenav/Sidenavv2";
 import { Databoardtablee } from "../components/Databoardtablee";
+import { Sidenavvv2 } from "../components/sidenav/Sidenavvv2";
+import { useDataboard } from "../contexts/Databoard";
 // import { useState } from "react";
 // import { Addmodalc } from "../components/Addmodalc";
-// import { Datainmodal } from "../components/Datainmodal";
+import { Datainmodal } from "../components/Datainmodal";
 // import { Link } from "react-router-dom";
 export function Databoard() {
   const { navboardstate } = useNavc();
+  const { databoardstate, databoarddispatch } = useDataboard();
   // const [state, setState] = useState(false);
   return (
     <>
       <div className="dcontainer">
         {/* <Sidenav /> */}
-        <Sidenavv2 />
+        {/* <Sidenavv2 /> */}
+        <Sidenavvv2 />
         <div className="datamain">
           <Topbar />
           <div className="databoardmaincontent">
             <h1 className="databoardheader">Data-in Board</h1>
             <div className="databoardupoptions">
               <div className="databoardupoption">
-                <button className="databoardupoption_btn">
+                <button
+                  onClick={() =>
+                    databoarddispatch({ type: "SHOW_SHEETS_MODAL" })
+                  }
+                  className="databoardupoption_btn"
+                >
                   <span className="databoardupoption_btntxt">connect</span>
                   <img
                     className="databoardupoption_btnlogo"
@@ -74,7 +83,7 @@ export function Databoard() {
             </div>
           </div>
           <Lowsootfooter />
-          {/* <Datainmodal /> */}
+          {databoardstate.sheetsmodal && <Datainmodal />}
         </div>
       </div>
     </>

@@ -1,8 +1,47 @@
+import axios from "axios";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { useDataboard } from "../contexts/Databoard";
+import { baseurl } from "../api/url";
 
 export function Datainmodal(params) {
+  // databoarddispatch({ type: "SHOW_SHEETS_MODAL" })
+  const { databoarddispatch } = useDataboard();
   const onSubmit = async (data) => {
-    console.log(register);
+    databoarddispatch({ type: "HIDE_SHEETS_MODAL" });
+    // console.log( { sheetURL: data.sheetsurl } );
+    try {
+      const response = await axios.post(`${baseurl}/googleSheets`, {
+        sheetURL: data.sheetsurl,
+      });
+      if (response.status === 200) {
+        toast.success("google sheet imported", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+      console.log(
+        "%csheet added sucess fully",
+        "background:lawngreen; color:black"
+      );
+    } catch (error) {
+      // console.log({ error });
+      // console.log("%csheet not added", "background:red; color:white");
+      toast.error("Sheet integration error", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
   const { register, handleSubmit } = useForm({
     defaultValues: {},
@@ -26,12 +65,23 @@ export function Datainmodal(params) {
           </div>
           <div className="dialog__row">
             <div className="dialog__copycont">
-              <span className="dialog__copyconttext">
-                something@lowsoot.com
+              <span
+                style={{
+                  textOverflow: "ellipsis",
+                  maxWidth: "45rem",
+                  // lineClamp: 1,
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                }}
+                className="dialog__copyconttext"
+              >
+                emissions-calculator@emissions-calculator-354206.iam.gserviceaccount.com
               </span>
               <button
                 onClick={() =>
-                  navigator.clipboard.writeText("something@lowsoot.com")
+                  navigator.clipboard.writeText(
+                    "emissions-calculator@emissions-calculator-354206.iam.gserviceaccount.com"
+                  )
                 }
                 className="dialog__copycontbtn"
               >
@@ -40,19 +90,26 @@ export function Datainmodal(params) {
             </div>
           </div>
           <div className="dialog__row">
-            <p className="sheets_instructions">
-              <b>Usage Instructions</b> <br />
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem
-              ipsum aliquid quae! Sit atque modi possimus, nam porro harum cum
-              excepturi voluptate quod maxime aliquam nostrum accusantium
-              quibusdam optio provident.
-            </p>
+            <div className="sheets_instructions">
+              <b>Usage Instructions</b>
+              <ul className="sheets_instructionlist">
+                <li>Open the sheet url entered above.</li>
+                <li>Click Share.</li>
+                <li>Enter the email address.</li>
+                <li>Provide us the editor access.</li>
+              </ul>
+            </div>
           </div>
           <button type="submit" className="dialog__btn">
-            Insert
+            Import
           </button>
         </form>
-        <button className="dialog__btn">Discard</button>
+        <button
+          onClick={() => databoarddispatch({ type: "HIDE_SHEETS_MODAL" })}
+          className="dialog__btn"
+        >
+          Discard
+        </button>
       </div>
     </div>
   );

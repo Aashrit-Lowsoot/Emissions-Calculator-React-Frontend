@@ -8,7 +8,8 @@ import { Dashparameters } from "../components/Dashparameters";
 import { Dashwebplatforms } from "../components/Dashwebplatforms";
 import { Lowsootfooter } from "../components/Lowsootfooter";
 // import { Sidenav } from "../components/Sidenav";
-import { Sidenavv2 } from "../components/sidenav/Sidenavv2";
+// import { Sidenavv2 } from "../components/sidenav/Sidenavv2";
+import { Sidenavvv2 } from "../components/sidenav/Sidenavvv2";
 import { Topbar } from "../components/Topbar";
 import { useNavc } from "../contexts/Navcontext";
 import { useVisuals } from "../contexts/Visualcontext";
@@ -74,7 +75,8 @@ export function Dashboard() {
   return (
     <div className="dcontainer">
       {/* <Sidenav /> */}
-      <Sidenavv2 />
+      {/* <Sidenavv2 /> */}
+      <Sidenavvv2 />
       <div className="dashmain">
         <Topbar />
         {loader ? (

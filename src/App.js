@@ -8,6 +8,7 @@ import { Protpage } from "./pages/Protpage";
 import { Dashboard } from "./pages/Dashboard";
 import { Databoard } from "./pages/Databoard";
 import { Report } from "./pages/Report";
+import { Signup } from "./pages/Signup";
 // import { Home } from "./pages/Home";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Databoard />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/report" element={<Report />} />
