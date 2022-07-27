@@ -9,7 +9,7 @@ import Reportmainhead from "../components/Reportmainhead";
 // import { Reportsources } from "../components/Reportsources";
 import { Reporttopbuttons } from "../components/Reporttopbuttons";
 // import { Sidenav } from "../components/Sidenav";
-import { Topbar } from "../components/Topbar";
+// import { Topbar } from "../components/Topbar";
 import { Bsrtable1 } from "../components/reportables/Bsrtable1";
 import { Bsrtable2 } from "../components/reportables/Bsrtable2";
 import { Bsrtable3 } from "../components/reportables/Bsrtable3";
@@ -18,11 +18,14 @@ import { Bsrtable4 } from "../components/reportables/Bsrtable4";
 import { Bsrtable5 } from "../components/reportables/Bsrtable5";
 import { Bsrtable6 } from "../components/reportables/Bsrtable6";
 import { Sidenavvv2 } from "../components/sidenav/Sidenavvv2";
+import { useAuth } from "../contexts/Authcontext";
+import { Topbarv2 } from "../components/topbar/Topbarv2";
 
 export function Report() {
   const [reportdata, setReport] = useState({});
   const [loading, setloader] = useState(true);
   const componentRef = useRef();
+  const { token } = useAuth();
   const generatePDF = () => {
     console.log(document.querySelector("#report__datacontainer").clientWidth);
     const widthval = document.querySelector(
@@ -49,6 +52,7 @@ export function Report() {
           {
             signal,
             // headers: { authorization: authtoken },
+            headers: { authorization: `Bearer ${token}` },
           }
         );
         console.log({ repox: response.data });
@@ -66,13 +70,14 @@ export function Report() {
     return () => {
       controller.abort();
     };
-  }, []);
+  }, [token]);
   return (
     <div className="dcontainer">
       {/* <Sidenavv2 /> */}
       <Sidenavvv2 />
       <div className="reportmain">
-        <Topbar />
+        {/* <Topbar /> */}
+        <Topbarv2 />
         {loading ? (
           <div className="reportmaincontent">
             <h1>

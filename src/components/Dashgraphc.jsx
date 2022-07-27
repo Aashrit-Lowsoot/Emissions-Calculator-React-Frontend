@@ -8,13 +8,13 @@ export function Dashgraphc() {
   return (
     <div className="dashgraphs">
       <div className="dashgraphlinecont">
-        <h2 className="dashgraph__header">Air Cargo</h2>
+        <h2 className="dashgraph__header">Air Cargo CO2e</h2>
         <div className="dashgraphline__cont">
           <Linegraph vizarray={visualstate.cargo.Air} />
         </div>
       </div>
       <div className="dashgraphbarcont">
-        <h2 className="dashgraph__header">Road Cargo</h2>
+        <h2 className="dashgraph__header">Road Cargo CO2e</h2>
         <div className="dashgraphbar__cont">
           <Bargraph vizarray={visualstate.cargo.Road} />
         </div>

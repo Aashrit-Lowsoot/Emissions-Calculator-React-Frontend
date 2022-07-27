@@ -3,22 +3,24 @@ import { useEffect } from "react";
 import { useDataboard } from "../contexts/Databoard";
 import {
   datetoviewformat,
-  deleterecorde,
+  // deleterecorde,
 } from "../functions/databoardfunctions";
-import editbtn from "../assets/databoard/editbtn.svg";
-import trashbtn from "../assets/databoard/trshbtn.svg";
+// import editbtn from "../assets/databoard/editbtn.svg";
+// import trashbtn from "../assets/databoard/trshbtn.svg";
+import { useAuth } from "../contexts/Authcontext";
 
 export function Databoardtablee() {
   const { databoarddispatch, databoardstate } = useDataboard();
-  async function handledeletee(deletionid) {
-    const res = await deleterecorde(deletionid);
-    if (res.success) {
-      databoarddispatch({
-        type: "DELETE_REORDE",
-        payload: { deletionid: res.deletionid },
-      });
-    }
-  }
+  const { token } = useAuth();
+  // async function handledeletee(deletionid) {
+  //   const res = await deleterecorde(deletionid);
+  //   if (res.success) {
+  //     databoarddispatch({
+  //       type: "DELETE_REORDE",
+  //       payload: { deletionid: res.deletionid },
+  //     });
+  //   }
+  // }
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
@@ -32,7 +34,7 @@ export function Databoardtablee() {
           "https://emissions-calculator-react.herokuapp.com/allElectricityFactors",
           {
             signal,
-            // headers: { authorization: authtoken },
+            headers: { authorization: `Bearer ${token}` },
           }
         );
         console.log("----");
@@ -54,7 +56,7 @@ export function Databoardtablee() {
     return () => {
       controller.abort();
     };
-  }, [databoarddispatch]);
+  }, [databoarddispatch, token]);
   // https://emissions-calculator-react.herokuapp.com/electricityEmission
   useEffect(() => {
     const controller = new AbortController();
@@ -65,7 +67,7 @@ export function Databoardtablee() {
           "https://emissions-calculator-react.herokuapp.com/electricityEmissions",
           {
             signal,
-            // headers: { authorization: authtoken },
+            headers: { authorization: `Bearer ${token}` },
           }
         );
         console.log("********");
@@ -91,7 +93,7 @@ export function Databoardtablee() {
     return () => {
       controller.abort();
     };
-  }, [databoarddispatch]);
+  }, [databoarddispatch, token]);
   console.log(databoardstate.databoardtablee);
   return (
     <>
@@ -101,9 +103,9 @@ export function Databoardtablee() {
         <table className="databoardtable__table">
           <thead className="databoardtable__tablehead">
             <tr className="databoardtable__theadtr">
-              <th className="databoardtable__theadth" scope="col">
+              {/* <th className="databoardtable__theadth" scope="col">
                 <span className="blank__letters">check</span>
-              </th>
+              </th> */}
               <th className="databoardtable__theadth" scope="col">
                 date
               </th>
@@ -125,15 +127,15 @@ export function Databoardtablee() {
             {[...databoardstate.databoardtablee].map((item) => {
               return (
                 <tr key={item._id} className="databoardtable__tabletr">
-                  <td>
+                  {/* <td>
                     <div className="databoardtable__tablecheck">
                       <input type="checkbox" defaultChecked />
                     </div>
-                  </td>
+                  </td> */}
                   <td className="databoardtable__tabletd">
                     {datetoviewformat(item.date)}
                   </td>
-                  <td className="databoardtable__tabletd">{item.energy}</td>
+                  <td className="databoardtable__tabletd">{item.energy} kWh</td>
                   <td className="databoardtable__tabletd">
                     {
                       [...databoardstate.factorarre].find(
@@ -143,7 +145,7 @@ export function Databoardtablee() {
                   </td>
                   <td className="databoardtable__tabletd">-</td>
                   <td className="databoardtable__tabletd">
-                    <div className="databoardtable__tableactions">
+                    {/* <div className="databoardtable__tableactions">
                       <button
                         onClick={() =>
                           databoarddispatch({
@@ -163,7 +165,8 @@ export function Databoardtablee() {
                       >
                         <img src={trashbtn} alt="trashbtn" />
                       </button>
-                    </div>
+                    </div> */}
+                    coming soon
                   </td>
                 </tr>
               );

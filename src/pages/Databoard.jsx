@@ -1,5 +1,5 @@
 // import { Sidenav } from "../components/Sidenav";
-import { Topbar } from "../components/Topbar";
+// import { Topbar } from "../components/Topbar";
 import { Databoardcontols } from "../components/Databoardcontols";
 import { Databoardtable } from "../components/Databoardtable";
 import { Databottom } from "../components/Databottom";
@@ -20,6 +20,7 @@ import { useDataboard } from "../contexts/Databoard";
 // import { useState } from "react";
 // import { Addmodalc } from "../components/Addmodalc";
 import { Datainmodal } from "../components/Datainmodal";
+import { Topbarv2 } from "../components/topbar/Topbarv2";
 // import { Link } from "react-router-dom";
 export function Databoard() {
   const { navboardstate } = useNavc();
@@ -32,7 +33,8 @@ export function Databoard() {
         {/* <Sidenavv2 /> */}
         <Sidenavvv2 />
         <div className="datamain">
-          <Topbar />
+          {/* <Topbar /> */}
+          <Topbarv2 />
           <div className="databoardmaincontent">
             <h1 className="databoardheader">Data-in Board</h1>
             <div className="databoardupoptions">

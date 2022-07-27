@@ -67,9 +67,9 @@ export default function Register() {
           <div className="signup__head">
             <h1 className="signup__header">Sign up</h1>
             <p className="signup__message">
-              Already have an account?{" "}
+              Already have an account?&nbsp;
               <Link className="link" to="/login">
-                Sign up
+                Login
               </Link>
             </p>
           </div>

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDataboard } from "../contexts/Databoard";
-import { Addmodalc } from "./Addmodalc";
+// import { Addmodalc } from "./Addmodalc";
 import { Addmodale } from "./Addmodale";
-import { Editmodal } from "./Editmodal";
-import { Editmodalc } from "./Editmodalc";
+// import { Editmodal } from "./Editmodal";
+// import { Editmodalc } from "./Editmodalc";
 import { Editmodale } from "./Editmodale";
 
 export function Databottome() {
@@ -11,11 +11,12 @@ export function Databottome() {
   const { databoardstate } = useDataboard();
   return (
     <>
-      <div className="databoardmainbottom">
-        <p className="databoardmainbottom__rowmessage">
-          {databoardstate.databoardtablee.length} results found
-        </p>
-        {/* <div className="databoardmainbottom__controls">
+      {!databoardstate.databoardtableloading && (
+        <div className="databoardmainbottom">
+          <p className="databoardmainbottom__rowmessage">
+            {databoardstate.databoardtablee.length} results found
+          </p>
+          {/* <div className="databoardmainbottom__controls">
           <button
             className="databoardmainbottom__addbtn"
             onClick={() => setModalstatus(true)}
@@ -23,7 +24,8 @@ export function Databottome() {
             Insert row
           </button>
         </div> */}
-      </div>
+        </div>
+      )}
       {/* {modalstatus && <Addmodal setModalstatus={setModalstatus} />} */}
       {/* {databoardstate.updatemodalstatus && <Editmodal />} */}
       {databoardstate.updatemodalstatus && <Editmodale />}

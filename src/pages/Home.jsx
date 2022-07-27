@@ -1,11 +1,12 @@
-import { Topbar } from "../components/Topbar";
+// import { Topbar } from "../components/Topbar";
 import { Databoardcontols } from "../components/Databoardcontols";
 import { Databoardtable } from "../components/Databoardtable";
 import { Databottom } from "../components/Databottom";
 import { Lowsootfooter } from "../components/Lowsootfooter";
-import { Homesidenav } from "../components/Homesidenav";
-import { Sidenavv2 } from "../components/sidenav/Sidenavv2";
+// import { Homesidenav } from "../components/Homesidenav";
+// import { Sidenavv2 } from "../components/sidenav/Sidenavv2";
 import { Sidenavvv2 } from "../components/sidenav/Sidenavvv2";
+import { Topbarv2 } from "../components/topbar/Topbarv2";
 export function Home() {
   return (
     <div className="dcontainer">
@@ -13,7 +14,8 @@ export function Home() {
       {/* <Sidenavv2 /> */}
       <Sidenavvv2 />
       <div className="datamain">
-        <Topbar />
+        {/* <Topbar /> */}
+        <Topbarv2 />
         <div className="databoardmaincontent">
           <h1 className="databoardheader">Data-in Board</h1>
           <div className="databoardtablecont">

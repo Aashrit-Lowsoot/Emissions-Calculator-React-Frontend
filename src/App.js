@@ -9,19 +9,48 @@ import { Dashboard } from "./pages/Dashboard";
 import { Databoard } from "./pages/Databoard";
 import { Report } from "./pages/Report";
 import { Signup } from "./pages/Signup";
+import { Hompage } from "./pages/Hompage";
 // import { Home } from "./pages/Home";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Databoard />} />
+        <Route
+          path="/"
+          element={
+            <Protected>
+              <Hompage />
+            </Protected>
+          }
+        />
         <Route path="/signup" element={<Signup />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/report" element={<Report />} />
-        <Route path="/visualize" element={<Dashboard />} />
-        <Route path="/databoard" element={<Databoard />} />
+        <Route
+          path="/report"
+          element={
+            <Protected>
+              <Report />
+            </Protected>
+          }
+        />
+        <Route
+          path="/visualize"
+          element={
+            <Protected>
+              <Dashboard />
+            </Protected>
+          }
+        />
+        <Route
+          path="/databoard"
+          element={
+            <Protected>
+              <Databoard />
+            </Protected>
+          }
+        />
         <Route
           path="/prot"
           element={
