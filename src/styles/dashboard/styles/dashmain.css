@@ -40,7 +40,7 @@
   background: var(--side-icon-hover);
   box-shadow: 0 0.4rem 1.5rem var(--side-icon-shadow);
   border-radius: 4.7rem;
-  width: 28rem;
+  width: max-content;
   align-items: center;
   gap: 1.6rem;
   padding-left: 1.8rem;
@@ -128,12 +128,10 @@
 .dashgraphline__cont {
   width: 53rem;
   background-color: var(--graoh-bg);
-
   height: 30rem;
   margin-left: auto;
   margin-right: auto;
 }
-
 .dashgrapharea {
   width: 73rem;
   height: 33rem;

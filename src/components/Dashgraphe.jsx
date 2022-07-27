@@ -13,7 +13,7 @@ export function Dashgrape() {
         </div>
       </div>
       <div className="dashgraphbarcont">
-        <h2 className="dashgraph__header">Electricity</h2>
+        <h2 className="dashgraph__header">Electricity in CO2e</h2>
         <div className="dashgraphbar__cont">
           <Bargraph vizarray={visualstate.electricty.Electricity} />
         </div>

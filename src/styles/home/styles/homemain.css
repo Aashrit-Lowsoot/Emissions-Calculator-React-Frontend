@@ -1,0 +1,29 @@
+:root {
+  font-size: 62.5%;
+  font-family: "Kanit", sans-serif;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.homemain {
+  background: linear-gradient(
+    135deg,
+    rgba(216, 210, 252, 1) 0%,
+    rgba(230, 228, 234, 1) 35%,
+    rgba(224, 233, 244, 1) 100%
+  );
+  display: grid;
+  grid-template-rows: 12rem auto;
+}
+.homemaincontent {
+  display: flex;
+  flex-direction: column;
+}
+.homemainheader {
+  margin-top: 2.1rem;
+  margin-left: 3.4rem;
+  font-size: 4.2rem;
+  font-weight: 500;
+}

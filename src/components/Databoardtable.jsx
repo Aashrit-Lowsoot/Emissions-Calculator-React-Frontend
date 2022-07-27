@@ -2,24 +2,26 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useDataboard } from "../contexts/Databoard";
 import mmt from "../assets/databoard/mmt.svg";
-import editbtn from "../assets/databoard/editbtn.svg";
-import trashbtn from "../assets/databoard/trshbtn.svg";
+// import editbtn from "../assets/databoard/editbtn.svg";
+// import trashbtn from "../assets/databoard/trshbtn.svg";
 import {
   datetoviewformat,
-  deleterecord,
+  // deleterecord,
 } from "../functions/databoardfunctions";
+import { useAuth } from "../contexts/Authcontext";
 
 export function Databoardtable() {
+  const { token } = useAuth();
   const { databoarddispatch, databoardstate } = useDataboard();
-  async function handledelete(deletionid) {
-    const res = await deleterecord(deletionid);
-    if (res.success) {
-      databoarddispatch({
-        type: "DELETE_REORD",
-        payload: { deletionid: res.deletionid },
-      });
-    }
-  }
+  // async function handledelete(deletionid) {
+  //   const res = await deleterecord(deletionid);
+  //   if (res.success) {
+  //     databoarddispatch({
+  //       type: "DELETE_REORD",
+  //       payload: { deletionid: res.deletionid },
+  //     });
+  //   }
+  // }
 
   useEffect(() => {
     const controller = new AbortController();
@@ -34,7 +36,7 @@ export function Databoardtable() {
           "https://emissions-calculator-react.herokuapp.com/allTravelFactors",
           {
             signal,
-            // headers: { authorization: authtoken },
+            headers: { authorization: `Bearer ${token}` },
           }
         );
 
@@ -54,7 +56,7 @@ export function Databoardtable() {
     return () => {
       controller.abort();
     };
-  }, [databoarddispatch]);
+  }, [databoarddispatch, token]);
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
@@ -67,7 +69,7 @@ export function Databoardtable() {
           "https://emissions-calculator-react.herokuapp.com/travelEmissions",
           {
             signal,
-            // headers: { authorization: authtoken },
+            headers: { authorization: `Bearer ${token}` },
           }
         );
         console.table(response.data);
@@ -91,7 +93,7 @@ export function Databoardtable() {
     return () => {
       controller.abort();
     };
-  }, [databoarddispatch]);
+  }, [databoarddispatch, token]);
   return (
     <>
       {databoardstate.databoardtableloading ? (
@@ -100,9 +102,9 @@ export function Databoardtable() {
         <table className="databoardtable__table">
           <thead className="databoardtable__tablehead">
             <tr className="databoardtable__theadtr">
-              <th className="databoardtable__theadth" scope="col">
+              {/* <th className="databoardtable__theadth" scope="col">
                 <span className="blank__letters">check</span>
-              </th>
+              </th> */}
               <th className="databoardtable__theadth" scope="col">
                 date
               </th>
@@ -130,17 +132,19 @@ export function Databoardtable() {
             {[...databoardstate.databoardtable].map((item, idx) => {
               return (
                 <tr key={item._id} className="databoardtable__tabletr">
-                  <td>
+                  {/* <td>
                     <div className="databoardtable__tablecheck">
                       <input type="checkbox" defaultChecked />
                     </div>
-                  </td>
+                  </td> */}
                   <td className="databoardtable__tabletd">
                     {datetoviewformat(item.date)}
                   </td>
                   <td className="databoardtable__tabletd">{item.travelBy}</td>
                   <td className="databoardtable__tabletd">{item.passengers}</td>
-                  <td className="databoardtable__tabletd">{item.distance}</td>
+                  <td className="databoardtable__tabletd">
+                    {item.distance} Kms
+                  </td>
                   <td className="databoardtable__tabletd">
                     {
                       databoardstate.allfactors[item.travelBy].find(
@@ -159,7 +163,7 @@ export function Databoardtable() {
                     </div>
                   </td>
                   <td className="databoardtable__tabletd">
-                    <div className="databoardtable__tableactions">
+                    {/* <div className="databoardtable__tableactions">
                       <button
                         onClick={() =>
                           databoarddispatch({
@@ -177,7 +181,8 @@ export function Databoardtable() {
                       >
                         <img src={trashbtn} alt="trashbtn" />
                       </button>
-                    </div>
+                    </div> */}
+                    coming soon
                   </td>
                 </tr>
               );

@@ -3,17 +3,25 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useDataboard } from "../contexts/Databoard";
 import { baseurl } from "../api/url";
+import { useAuth } from "../contexts/Authcontext";
 
 export function Datainmodal(params) {
   // databoarddispatch({ type: "SHOW_SHEETS_MODAL" })
   const { databoarddispatch } = useDataboard();
+  const { token } = useAuth();
   const onSubmit = async (data) => {
     databoarddispatch({ type: "HIDE_SHEETS_MODAL" });
     // console.log( { sheetURL: data.sheetsurl } );
     try {
-      const response = await axios.post(`${baseurl}/googleSheets`, {
-        sheetURL: data.sheetsurl,
-      });
+      const response = await axios.post(
+        `${baseurl}/googleSheets`,
+        {
+          sheetURL: data.sheetsurl,
+        },
+        {
+          headers: { authorization: `Bearer ${token}` },
+        }
+      );
       if (response.status === 200) {
         toast.success("google sheet imported", {
           position: "top-right",
@@ -78,6 +86,7 @@ export function Datainmodal(params) {
                 emissions-calculator@emissions-calculator-354206.iam.gserviceaccount.com
               </span>
               <button
+                type="button"
                 onClick={() =>
                   navigator.clipboard.writeText(
                     "emissions-calculator@emissions-calculator-354206.iam.gserviceaccount.com"

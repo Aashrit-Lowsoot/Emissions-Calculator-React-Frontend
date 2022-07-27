@@ -1,16 +1,54 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { baseurl } from "../api/url";
 
 export function Signup() {
   const [mail, setMail] = useState("");
   const [pas, setPas] = useState("");
+  const inputRef = useRef(null);
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
+    console.log(`${baseurl}/register`);
+    try {
+      const response = await axios.post(`${baseurl}/register`, {
+        email: data.email,
+        password: data.password,
+        companyId: data.companyId,
+      });
+      console.log(response);
+      if (response.status === 201) {
+        toast.success("User created", {
+          position: "top-right",
+          autoClose: 1998,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    } catch (error) {
+      toast.error("User creation failed", {
+        position: "top-right",
+        autoClose: 1998,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, setFocus } = useForm({
     defaultValues: {},
   });
+  useEffect(() => {
+    setFocus("name");
+  }, [setFocus]);
   return (
     <div className="signupage">
       <div className="brand">
@@ -18,7 +56,7 @@ export function Signup() {
           <img
             className="brand__image"
             src="https://media-exp2.licdn.com/dms/image/C560BAQHmrQrq-ifvpQ/company-logo_200_200/0/1627669001150?e=1665619200&v=beta&t=8cWndk6bBeVRicz1to769LOAshKTp9Vv039pDBDA3So"
-            alt=""
+            alt="lowsoot"
           />
         </div>
       </div>
@@ -35,9 +73,17 @@ export function Signup() {
         <form onSubmit={handleSubmit(onSubmit)} className="signup__form">
           <div className="signup__formonsite">
             <input
+              ref={inputRef}
               {...register("name")}
               required
               placeholder="Name"
+              className="signup__input"
+              type="text"
+            />
+            <input
+              {...register("companyId")}
+              required
+              placeholder="company id"
               className="signup__input"
               type="text"
             />
@@ -83,7 +129,7 @@ export function Signup() {
           </div>
           <div className="signup__formonthirdparty">
             <div className="fangcont">
-              <button className="fangbtn fangbtn--google">
+              <button type="button" className="fangbtn fangbtn--google">
                 <div className="fangbtn__iconcont">
                   <img
                     className="fangbtn_icon"
@@ -95,7 +141,7 @@ export function Signup() {
                   <div className="fangbtn__text">Continue with Google</div>
                 </div>
               </button>
-              <button className="fangbtn fangbtn--meta hide">
+              {/* <button className="fangbtn fangbtn--meta hide">
                 <div className="fangbtn__iconcont">
                   <img
                     className="fangbtn_icon"
@@ -106,7 +152,7 @@ export function Signup() {
                 <div className="fangbtn__textcont">
                   <div className="fangbtn__text">Continue with Facebook</div>
                 </div>
-              </button>
+              </button> */}
             </div>
           </div>
         </form>

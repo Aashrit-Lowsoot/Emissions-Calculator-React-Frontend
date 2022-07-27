@@ -1,7 +1,7 @@
-import carb1 from "../assets/carb1.svg";
-import carb2 from "../assets/carb2.svg";
-import carb3 from "../assets/carb3.svg";
-import carb4 from "../assets/carb4.svg";
+// import carb1 from "../assets/carb1.svg";
+// import carb2 from "../assets/carb2.svg";
+// import carb3 from "../assets/carb3.svg";
+// import carb4 from "../assets/carb4.svg";
 import { useVisuals } from "../contexts/Visualcontext";
 export function Dashparameters() {
   const { visualstate } = useVisuals();
@@ -10,7 +10,11 @@ export function Dashparameters() {
     <div className="dashparameters">
       <div className="dashparameter">
         <div className="dashparameter___imgcont">
-          <img className="dashparameter___img" src={carb1} alt="carb1" />
+          <img
+            className="dashparameter___img"
+            src={"https://img.icons8.com/carbon-copy/344/c.png"}
+            alt="carbon"
+          />
         </div>
         <div className="dashparameter___textcont">
           <p className="dashparameter___textvalue">
@@ -21,7 +25,11 @@ export function Dashparameters() {
       </div>
       <div className="dashparameter">
         <div className="dashparameter___imgcont">
-          <img className="dashparameter___img" src={carb2} alt="carb2" />
+          <img
+            className="dashparameter___img"
+            src={"https://img.icons8.com/carbon-copy/452/1-c.png"}
+            alt="scope 1"
+          />
         </div>
         <div className="dashparameter___textcont">
           <p className="dashparameter___textvalue">
@@ -33,7 +41,11 @@ export function Dashparameters() {
       </div>
       <div className="dashparameter">
         <div className="dashparameter___imgcont">
-          <img className="dashparameter___img" src={carb3} alt="carb3" />
+          <img
+            className="dashparameter___img"
+            src={"https://img.icons8.com/carbon-copy/452/2-c.png"}
+            alt="scope 2"
+          />
         </div>
         <div className="dashparameter___textcont">
           <p className="dashparameter___textvalue">
@@ -45,7 +57,11 @@ export function Dashparameters() {
       </div>
       <div className="dashparameter">
         <div className="dashparameter___imgcont">
-          <img className="dashparameter___img" src={carb4} alt="carb4" />
+          <img
+            className="dashparameter___img"
+            src={"https://img.icons8.com/carbon-copy/452/3-c.png"}
+            alt="scope 3"
+          />
         </div>
         <div className="dashparameter___textcont">
           <p className="dashparameter___textvalue">

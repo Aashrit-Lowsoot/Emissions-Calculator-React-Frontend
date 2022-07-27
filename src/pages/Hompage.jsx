@@ -1,26 +1,22 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { Dashgraph } from "../components/Dashgraph";
-import { Dashgrapharea } from "../components/Dashgrapharea";
 import { Dashgraphc } from "../components/Dashgraphc";
 import { Dashgrape } from "../components/Dashgraphe";
 import { Dashparameters } from "../components/Dashparameters";
-import { Dashwebplatforms } from "../components/Dashwebplatforms";
 import { Lowsootfooter } from "../components/Lowsootfooter";
-// import { Sidenav } from "../components/Sidenav";
-// import { Sidenavv2 } from "../components/sidenav/Sidenavv2";
 import { Sidenavvv2 } from "../components/sidenav/Sidenavvv2";
-// import { Topbar } from "../components/Topbar";
 import { Topbarv2 } from "../components/topbar/Topbarv2";
+// import { Topbar } from "../components/Topbar";
 import { useAuth } from "../contexts/Authcontext";
-import { useNavc } from "../contexts/Navcontext";
+import truck from "../assets/truck.svg";
 import { useVisuals } from "../contexts/Visualcontext";
 
-export function Dashboard() {
-  const { navboardstate } = useNavc();
+export function Hompage() {
   const { visualdispatch } = useVisuals();
-  const [loader, setloader] = useState(true);
   const { token } = useAuth();
+  const [loader, setloader] = useState(true);
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
@@ -31,16 +27,9 @@ export function Dashboard() {
           "https://emissions-calculator-react.herokuapp.com/visualisation",
           {
             signal,
-            // headers: { authorization: authtoken },
-
             headers: { authorization: `Bearer ${token}` },
           }
         );
-        // console.log({
-        //   travelviz: response.data.Travel,
-        //   cargoviz: response.data.Cargo,
-        //   electriviz: response.data.Electricity,
-        // });
         console.log({ dashload: response.data });
         visualdispatch({
           type: "SET_VISUALS",
@@ -53,16 +42,7 @@ export function Dashboard() {
             scope3viz: response.data.scope3,
             toatalviz: response.data.total,
           },
-          // scope1: 8175.648
-          // scope2: 1204.74
-          // scope3: 29078.552053507512
-          // total: 38458.94005350751
         });
-        // SET_VISUALS
-        // databoarddispatch({
-        //   type: "SET_ALLFACTORS",
-        //   payload: { factorsobject: response.data },
-        // });
       } catch (error) {
         if (axios.isAxiosError(error)) {
         } else {
@@ -79,32 +59,50 @@ export function Dashboard() {
   }, [visualdispatch, token]);
   return (
     <div className="dcontainer">
-      {/* <Sidenav /> */}
-      {/* <Sidenavv2 /> */}
       <Sidenavvv2 />
-      <div className="dashmain">
+      <div className="homemain">
         {/* <Topbar /> */}
         <Topbarv2 />
-        {loader ? (
-          <div className="dashmaincontent">
-            <h1>
-              <center>Loading...</center>
-            </h1>
-          </div>
-        ) : (
-          <div className="dashmaincontent">
-            <h1 className="dashheader">Visualization</h1>
-            <Dashparameters />
-            {navboardstate.navnow === 1 && <Dashgraph />}
-            {navboardstate.navnow === 3 && <Dashgraphc />}
-            {navboardstate.navnow === 2 && <Dashgrape />}
-            <div className="dashgraphblock">
-              <Dashgrapharea />
-              <Dashwebplatforms />
-            </div>
-          </div>
-        )}
-        <Lowsootfooter />
+        <div className="homemaincontent">
+          <h1 className="homemainheader">Summary</h1>
+          {loader ? (
+            <center>
+              <h1>loader...</h1>
+            </center>
+          ) : (
+            <>
+              <Dashparameters />
+              <div className="summaryparams">
+                <div className="summaryparam">
+                  <p className="summaryparam__title">
+                    Total number of kilometers travelled
+                    <img
+                      className="summaryparam__icon"
+                      src={truck}
+                      alt="truck"
+                    />
+                  </p>
+                  <p className="summaryparam__value">XXXX kms</p>
+                </div>
+                <div className="summaryparam">
+                  <p className="summaryparam__title">
+                    Total number of electricity consumed
+                    <img
+                      className="summaryparam__icon"
+                      src="https://upload.wikimedia.org/wikipedia/commons/4/41/Simpleicons_Interface_black-light-bulb.svg"
+                      alt="bulb"
+                    />
+                  </p>
+                  <p className="summaryparam__value">XXXX KWh</p>
+                </div>
+              </div>
+              <Dashgraph />
+              <Dashgraphc />
+              <Dashgrape />
+            </>
+          )}
+          <Lowsootfooter />
+        </div>
       </div>
     </div>
   );
