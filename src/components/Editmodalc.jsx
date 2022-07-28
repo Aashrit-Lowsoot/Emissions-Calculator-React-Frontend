@@ -1,4 +1,4 @@
-import { updaterecord, updaterecordc } from "../functions/databoardfunctions";
+import { updaterecordc } from "../functions/databoardfunctions";
 import { useForm } from "react-hook-form";
 import { useDataboard } from "../contexts/Databoard";
 import { useState } from "react";
